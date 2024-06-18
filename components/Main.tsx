@@ -5,6 +5,7 @@ import Button from "./Button";
 import { FaArrowLeft, FaCaretLeft, FaPlus, FaRepeat } from "react-icons/fa6";
 import { usePathname, useRouter } from "next/navigation"; // Import useNavigation for client-side routing
 import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -13,9 +14,15 @@ interface HeaderProps {
 
 const Main: React.FC<HeaderProps> = ({ children, classNames }) => {
   const navigation = usePathname();
-
+  const [height, setHeight] = useState(0);
   const router = useRouter();
   const currentPath = navigation;
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setHeight(window.innerHeight);
+    }
+  }, []);
 
   return (
     <div className={twMerge("w-full h-full", classNames)}>
@@ -24,7 +31,7 @@ const Main: React.FC<HeaderProps> = ({ children, classNames }) => {
           <h1 className="text-2xl cursor-pointer font-bold">Posts</h1>
         </div>
         <div className="flex gap-x-2 items-center justify-center">
-          {window.innerWidth < 768 ? (
+          {height < 768 ? (
             <Button
               onPress={() => {
                 router.push("/");

@@ -71,7 +71,7 @@ const Posts = () => {
             key={post.id}
             className="bg-neutral-700 rounded-lg px-3 py-2 w-full"
           >
-            <pre className="text-wrap">&quot{post.body}&quot</pre>
+            <pre className="text-wrap">&quot;{post.body}&quot;</pre>
             <div className="flex items-center justify-between mt-3">
               <Button
                 className="bg-transparent text-white hover:bg-neutral-800 w-[50px] h-[50px] p-1 hover:text-red-600"

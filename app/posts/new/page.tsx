@@ -2,9 +2,12 @@
 
 import Button from "@/components/Button";
 import { insertPost } from "@/supabase/supabaseClient";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 const NewPost = () => {
+  const router = useRouter();
+
   const handleSubmit = () => {
     const body = (document.getElementById("content") as HTMLInputElement).value;
     const user = (document.getElementById("username") as HTMLInputElement)
@@ -13,7 +16,9 @@ const NewPost = () => {
     if (body.trim() == "") {
       return toast.error("Both of the fields are required!");
     }
+
     insertPost(body, user);
+    router.push("/");
   };
   return (
     <div className="w-full h-[calc(100vh-80px)] relative">

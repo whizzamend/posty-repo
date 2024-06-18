@@ -1,9 +1,9 @@
-import Header from "@/components/Header";
+"use client";
+
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  return (
-    <div className="w-full h-full">
-      <Header>Hello World!</Header>
-    </div>
-  );
+  const router = useRouter();
+
+  return router.push("/posts");
 }
